@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.tarjeta {
+  padding: 2%;
+  border: 1px solid black;
+}
+
+.customBg {
+  background-color: #fff;
+}
+.cardCustom {
+  margin: 1%;
+  max-width: calc(25% - 2%);
+}
