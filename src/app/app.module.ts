@@ -26,6 +26,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { ContactFormComponent } from './shared/contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { environment } from '../environments/environment';
     TimelineComponent,
     NavbarComponent,
     DatePickerComponent,
-    FormularioComponent
+    FormularioComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,

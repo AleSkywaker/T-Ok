@@ -6,6 +6,7 @@ import { MapasComponent } from './pages/mapas/mapas.component';
 import { GoogleChartsComponent } from './pages/google-charts/google-charts.component';
 import { TimelineComponent } from './pages/timeline/timeline.component';
 import { DatePickerComponent } from './shared/date-picker/date-picker.component';
+import { ContactFormComponent } from './shared/contact-form/contact-form.component';
 
 const routes: Routes = [
   { path: 'grafico', component: GraficoD3Component },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'google', component: GoogleChartsComponent },
   { path: 'time', component: TimelineComponent },
   { path: 'date', component: DatePickerComponent },
+  { path: 'form', component: ContactFormComponent },
   {
     path: '',
     redirectTo: '/',
