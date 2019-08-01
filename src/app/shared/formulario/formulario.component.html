@@ -1,46 +1,92 @@
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+<div class="tarjeta" [ngStyle]="{'background-color': colorNuevo}">
+  <form #myForm="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit(myForm.value)" class="form-group mt-1">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineCheckbox1" name="rado" value="blue"
+                (change)="cambio($event)">
+              <label class="form-check-label" for="inlineCheckbox1">Preparacion</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineCheckbox2" name="rado" value="red"
+                (change)="cambio($event)">
+              <label class="form-check-label" for="inlineCheckbox2">Curso</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineCheckbox3" name="rado" value="yellow"
+                (change)="cambio($event)">
+              <label class="form-check-label" for="inlineCheckbox3">Coaching</label>
+            </div> -->
+            <label for="inputState">Tipo de curso</label>
+            <select id="inputTypeCurso" class="form-control" formControlName="color" name="color"
+              (change)="cambio($event)">
+              <option disabled selected>Selecciona una opción</option>
+              <option value="blue">Preparación</option>
+              <option value="red">Curso</option>
+              <option value="yellow">Coaching</option>
+            </select>
+          </div>
+          <div class="col-md-12 mt-3">
+            <label for="inputState">Nombre de curso</label>
+            <select id="inputTypeCurso" class="form-control" formControlName="curso">
+              <option disabled selected>Selecciona una opción</option>
+              <option value="Data Specialist">Data Specialist</option>
+              <option value="Data Scientist">Data Scientist</option>
+              <option value="Data Inmersion">Data Inmersion</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3">
+            <label for="inputState">Pais</label>
+            <select id="inputTypeCurso" class="form-control" formControlName="pais">
+              <option disabled selected>Selecciona una opción</option>
+              <option value="España">España</option>
+              <option value="EEUU">EEUU</option>
+              <option value="Mexico">México</option>
+              <option value="Uruguay">Uruguay</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <!-- <app-date-picker></app-date-picker> -->
+        <div class="form-group col-md-12">
+          <label for="profesor">Profesor</label>
+          <input type="text" class="form-control" id="profesro" placeholder="Nombre del profesor"
+            formControlName="profesor">
+        </div>
+        <div class="form-group col-md-12">
+          <label for="profesor">Fecha inicio</label>
+          <input type="date" class="form-control" id="profesro" placeholder="Fecha inicio" formControlName="fechaIni">
+        </div>
+        <div class="form-group col-md-12 mt-3">
+          <label for="profesor">Fecha final</label>
+          <input type="date" class="form-control" id="profesro" placeholder="Fecha final" formControlName="fechaFinal">
+        </div>
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+
+
+    <button type="submit" class="btn btn-block btn-outline-dark customBg">Crear curso</button>
+  </form>
+</div>
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="card text-center cardCustom" *ngFor="let curso of cursos | async"
+      [ngStyle]="{'background-color': curso.color}">
+      <div class="card-body">
+        <h5 class="card-title">{{curso.curso}}</h5>
+        <h3 class="card-title">{{curso.tipoCurso}}</h3>
+        <p class="card-text">Profesor: {{curso.profesor}}</p>
+        <p class="card-text">Pais: {{curso.pais}}</p>
+        <span>Empieza : {{curso.fechaIni}}</span>
+        <br>
+        <span>Acaba : {{curso.fechaFinal}}</span>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+</div>
