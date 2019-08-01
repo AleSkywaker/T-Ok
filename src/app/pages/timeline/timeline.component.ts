@@ -1,12 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  ChartReadyEvent,
-  ChartErrorEvent,
-  ChartSelectEvent,
-  ChartMouseOverEvent,
-  ChartMouseOutEvent
-} from 'ng2-google-charts';
-import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces';
+import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timeline',
@@ -14,20 +9,43 @@ import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
-  public timelineChart = {
-    chartType: 'Timeline',
-    dataTable: [
-      ['Nombre', 'Tarea', 'Desde', 'Hasta'],
-      ['Joaquin', 'Preparacion', new Date(1789, 3, 30), new Date(1797, 2, 4)],
-      ['Joaquin', 'Curso', new Date(1797, 2, 4), new Date(1801, 2, 4)],
-      ['Joaquin', 'Coaching', new Date(1801, 2, 4), new Date(1809, 2, 4)]
-    ],
-    options: {
-      showRowLabels: true,
-      timeline: { groupByRowLabel: true }
-    }
-  };
-  constructor() {}
+  cursosProfes: Observable<any>;
+  aux;
+  testP;
+  profes;
+  timelineChart;
+
+  constructor(private db: AngularFirestore) {
+    this.cursosProfes = db.collection('cursos').valueChanges();
+    this.testP = [['Nombre', 'Tarea', 'Desde', 'Hasta']];
+
+    this.cursosProfes
+      .pipe(
+        map(d => {
+          for (let i = 0; i < d.length; i++) {
+            const aux = [];
+            aux.push(d[i].profesor);
+            aux.push(d[i].tipoCurso);
+            const ini = new Date(d[i].fechaIni);
+            aux.push(ini);
+            const final = new Date(d[i].fechaFinal);
+            aux.push(final);
+            this.testP.push(aux);
+          }
+          return this.testP;
+        })
+      )
+      .subscribe(datos => {
+        this.timelineChart = {
+          chartType: 'Timeline',
+          dataTable: datos,
+          options: {
+            showRowLabels: true,
+            timeline: { groupByRowLabel: true }
+          }
+        };
+      });
+  }
 
   ngOnInit() {}
 }
