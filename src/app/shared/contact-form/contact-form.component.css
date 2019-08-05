@@ -7,7 +7,7 @@
 }
 
 .alert {
-  background: #f2edda;
+  background: rgba(255, 0, 0, 0.69);
   padding: 7px;
   font-size: 0.9em;
   margin-bottom: 20px;
