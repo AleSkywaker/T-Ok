@@ -28,7 +28,7 @@
     "angular2-materialize": "^15.1.10",
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.9",
-    "d3": "^5.9.7",
+    "d3": "^7.6.1",
     "firebase": "^6.3.3",
     "jquery": "^3.4.1",
     "ng2-google-charts": "^4.0.0",
